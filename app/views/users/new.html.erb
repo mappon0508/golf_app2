@@ -1,0 +1,53 @@
+<% provide(:title, 'Sign up') %>
+<h1>アカウントを作成</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user) do |f| %>
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, placeholder: "ユーザー名を入力してください", class: "form-control" %>
+
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, placeholder: "メールアドレスを入力してください", class: "form-control" %>
+
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, placeholder: "パスワードを入力してください", class: "form-control" %>
+
+      <%= f.label :password_confirmation, "パスワード確認" %>
+      <%= f.password_field :password_confirmation, placeholder: "パスワードを再入力してください", class: "form-control" %>
+
+      <div class="field">
+        <%= f.label :birthday, "生年月日" %><br>
+        <%= f.date_select :birthday, { start_year: 1950, end_year: 2023,
+                                      include_blank: true,
+                                      use_two_digit_numbers: true },
+                    { class: "input-tab birthday-select" } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :gender %><br>
+        <%= f.radio_button :gender, "man" %>
+        <%= f.label :gender, "男性" %>
+        <%= f.radio_button :gender, "woman" %>
+        <%= f.label :gender, "女性" %>
+        <%= f.radio_button :gender, "other" %>
+        <%= f.label :gender, "その他" %>
+      </div>
+
+
+      <%= f.label :golf_experience, "ゴルフ歴" %>
+      <%= f.number_field :golf_experience, value: 0, class: "form-control", min: 0 %>年
+
+      <%= f.label :best_score, "ベストスコア" %>
+      <%= f.number_field :best_score, value: 72, class: "form-control", min: 18 %>
+       
+      <%= f.check_box :accept_terms %>
+        <%= f.label :accept_terms do %>
+        <%= link_to("Pro Coachの利用規約", terms_of_use_path) %>に同意します。
+      <% end %>
+
+
+      <%= f.submit "登録する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

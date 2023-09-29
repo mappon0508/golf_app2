@@ -1,0 +1,9 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    register: '新規登録'
+users:
+    new:
+      title: 'アカウントを作成'
+      to_login_page: 'ログインページへ'
+      

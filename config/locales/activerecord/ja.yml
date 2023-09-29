@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+    attributes:
+      user:
+        title: アカウントを作成
+        name: ユーザー名は何にしますか？
+        email: あなたのメールアドレス
+        password: パスワードを作成
+        password_confirmation: パスワード確認
+        birthdate: 生年月日
+        gender: 性別
+        man: 男性
+        woman: 女性
+        other: その他
+    
