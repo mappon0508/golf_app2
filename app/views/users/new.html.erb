@@ -41,11 +41,13 @@
       <%= f.label :best_score, "ベストスコア" %>
       <%= f.number_field :best_score, value: 72, class: "form-control", min: 18 %>
        
-      <%= f.check_box :accept_terms %>
-        <%= f.label :accept_terms do %>
-        <%= link_to("Pro Coachの利用規約", terms_of_use_path) %>に同意します。
+      <%= f.check_box :agreement, :as => :boolean, checked:false %>
+      <%= link_to("Pro Coachの利用規約", terms_of_use_path) %>に同意します。
+       
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>このコンピューターにログイン情報を記憶させる</span>
       <% end %>
-
 
       <%= f.submit "登録する", class: "btn btn-primary" %>
     <% end %>
