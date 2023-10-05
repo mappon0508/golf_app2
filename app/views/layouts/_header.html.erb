@@ -9,6 +9,10 @@
       <ul class="nav navbar-nav navbar-right">       
         <% if logged_in? %>
           <li><%= link_to current_user.name, user_path(current_user) %></li>
+          <li><%= link_to "スコア登録", golf_course_search_path %></li>
+          <li><%= link_to "練習メニューを編集", "#" %></li>
+          <li><%= link_to "練習メニューを作成", "#" %></li>
+          <li><%= link_to "過去のスコア", "#" %></li>
         <% else %>
           <li><%= link_to (t 'defaults.register'),   new_user_path %></li>
           <li><%= link_to (t 'defaults.login'), login_path %></li>

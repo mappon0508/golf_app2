@@ -6,6 +6,7 @@ ruby "3.1.2"
 # my add_gem
 gem 'rails-i18n'
 
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
