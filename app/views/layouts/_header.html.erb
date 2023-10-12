@@ -12,7 +12,7 @@
           <li><%= link_to "スコア登録", golf_courses_path %></li>
           <li><%= link_to "練習メニューを編集", "#" %></li>
           <li><%= link_to "練習メニューを作成", "#" %></li>
-          <li><%= link_to "過去のスコア", "#" %></li>
+          <li><%= link_to "過去のスコア", past_scores_path %></li>
         <% else %>
           <li><%= link_to (t 'defaults.register'),   new_user_path %></li>
           <li><%= link_to (t 'defaults.login'), login_path %></li>
