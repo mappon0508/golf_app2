@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_130841) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_20_124558) do
   create_table "golf_courses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name"
@@ -25,7 +25,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_130841) do
     t.integer "weather", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "finish", default: 0, null: false
+    t.integer "user_id", null: false
     t.index ["golf_course_id"], name: "index_golf_play_records_on_golf_course_id"
+    t.index ["user_id"], name: "index_golf_play_records_on_user_id"
   end
 
   create_table "holes", force: :cascade do |t|
@@ -35,6 +38,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_130841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["golf_course_id"], name: "index_holes_on_golf_course_id"
+  end
+
+  create_table "practice_days", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "practice_time"
+    t.date "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "content"], name: "index_practice_days_on_user_id_and_content", unique: true
+    t.index ["user_id"], name: "index_practice_days_on_user_id"
+  end
+
+  create_table "practice_menus", force: :cascade do |t|
+    t.text "title"
+    t.text "methods"
+    t.text "objective"
+    t.text "trick"
+    t.integer "level", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "category", default: 0, null: false
+    t.integer "practice_type", default: 0, null: false
+  end
+
+  create_table "practice_schedules", force: :cascade do |t|
+    t.integer "practice_day_id", null: false
+    t.integer "practice_menu_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["practice_day_id"], name: "index_practice_schedules_on_practice_day_id"
+    t.index ["practice_menu_id"], name: "index_practice_schedules_on_practice_menu_id"
   end
 
   create_table "scores", force: :cascade do |t|
@@ -66,12 +100,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_130841) do
     t.integer "best_score", null: false
     t.date "birthday", null: false
     t.string "remember_digest"
+    t.integer "weak_point", default: 0, null: false
+    t.integer "very_weak_point", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "golf_courses", "users"
   add_foreign_key "golf_play_records", "golf_courses"
+  add_foreign_key "golf_play_records", "users"
   add_foreign_key "holes", "golf_courses"
+  add_foreign_key "practice_days", "users"
+  add_foreign_key "practice_schedules", "practice_days"
+  add_foreign_key "practice_schedules", "practice_menus"
   add_foreign_key "scores", "golf_play_records"
   add_foreign_key "scores", "holes"
 end

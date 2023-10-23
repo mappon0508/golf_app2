@@ -8,5 +8,26 @@ module ApplicationHelper
           "#{page_title} | #{base_title}"                 # 文字列の式展開
         end
     end
+
+    def level_text(level)
+      case level
+      when "hundred_over"
+        "スコア100以上"
+      when "within_hundred"
+        "スコア100切り"
+      when "within_ninety"
+        "スコア90切り"
+      when "within_eighty_fiv"
+        "スコア85切り"
+      when "within_eighty"
+        "スコア80切り"
+      when "within_seventy_five"
+        "スコア75切り"
+      when "under_par"
+        "スコアアンダーパー"
+      else
+        "未定義"
+      end
+    end
 end
   
