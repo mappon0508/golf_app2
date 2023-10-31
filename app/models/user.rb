@@ -259,48 +259,75 @@ class User < ApplicationRecord
   end
 
   def weak_point_update
-    # 基準値を定義
-    criteria = {
-      weak_tee_shot: 60,
-      weak_shot_within_two_hundredone_from_hundred_fifty: 30,
-      weak_shot_within_hundred_fifty_from_hundred: 50,
-      weak_approach_shot: 40,
-      weak_approach: 70,
-      weak_bunker: 50,
-      weak_long_putt: 80,
-      weak_short_putt: 90
-    }
-  
-    # カテゴリごとにユーザーの平均値を計算
-    category_averages = {
-      weak_tee_shot: calculate_fairway_keep_percentage_for_user,
-      weak_shot_within_two_hundredone_from_hundred_fifty: calculate_within_200_to_150_par_on_percentage_for_user,
-      weak_shot_within_hundred_fifty_from_hundred: calculate_within_150_to_100_par_on_percentage_for_user,
-      weak_approach_shot: calculate_within_100_two_pin_percentage_for_user,
-      weak_approach: calculate_approach_success_rate_for_user,
-      weak_bunker: calculate_bunker_save_rate_for_user,
-      weak_long_putt: calculate_long_putt_success_rate_for_user,
-      weak_short_putt: calculate_short_putt_success_rate_for_user
-    }
+  # 基準値を定義
+  criteria = {
+    weak_tee_shot: 53,
+    weak_shot_within_two_hundredone_from_hundred_fifty: 30,
+    weak_shot_within_hundred_fifty_from_hundred: 50,
+    weak_approach_shot: 25,
+    weak_approach: 65,
+    weak_bunker: 25,
+    weak_long_putt: 90,
+    weak_short_putt: 60
+  }
 
-    # カテゴリごとに基準値を割った値を計算
-    category_ratios = category_averages.transform_values do |average|
-      category_name = category_averages.key(average)
-      criteria[category_name] / average
-    end
-    # カテゴリごとにユーザーの基準値を平均値で割った値を降順でソート
-    sorted_categories = category_ratios.sort_by { |category, ratio| -ratio }
-    # 最大の2つのカテゴリを選択
-    most_important_categories = sorted_categories.reject { |category, ratio| ratio == Float::INFINITY }.take(2)
-    # most_important_categoriesの中身があるか確認
-    unless most_important_categories.empty?
-      most_important_category = most_important_categories.second.first.to_s
-      # ユーザーの very_weak_point カラムを更新
-      if self.weak_point != most_important_category
-        self.update(weak_point: most_important_category)
-      end
+  # カテゴリごとにユーザーの平均値を計算
+  category_averages = {
+    weak_tee_shot: calculate_fairway_keep_percentage_for_user,
+    weak_shot_within_two_hundredone_from_hundred_fifty: calculate_within_200_to_150_par_on_percentage_for_user,
+    weak_shot_within_hundred_fifty_from_hundred: calculate_within_150_to_100_par_on_percentage_for_user,
+    weak_approach_shot: calculate_within_100_two_pin_percentage_for_user,
+    weak_approach: calculate_approach_success_rate_for_user,
+    weak_bunker: calculate_bunker_save_rate_for_user,
+    weak_long_putt: calculate_long_putt_success_rate_for_user,
+    weak_short_putt: calculate_short_putt_success_rate_for_user
+  }
+
+  # カテゴリごとに基準値を割った値を計算
+  category_ratios = category_averages.transform_values do |average|
+    category_name = category_averages.key(average)
+    criteria[category_name] / average
+  end
+  # カテゴリごとにユーザーの基準値を平均値で割った値を降順でソート
+  sorted_categories = category_ratios.sort_by { |category, ratio| -ratio }
+  # 最大の2つのカテゴリを選択
+  unless sorted_categories.any? { |category, ratio| ratio == Float::INFINITY }
+  most_important_categories = sorted_categories.reject { |category, ratio| ratio == Float::INFINITY }.take(2)
+  end
+  
+  # most_important_categoriesの中身があるか確認
+  unless most_important_categories.nil? || most_important_categories.empty?
+    most_important_category = most_important_categories.second.first.to_s
+    # ユーザーの very_weak_point カラムを更新
+    if self.weak_point != most_important_category
+      self.update(weak_point: most_important_category)
     end
   end
+end
+
+
+  def average_score
+    # ユーザに関連付けられたゴルフプレイレコードを取得
+    golf_play_records = self.golf_play_records
+    total_scores = 0
+    total_rounds = 0
+  
+    # 各プレイレコードのスコアを取得して合計
+    golf_play_records.each do |record|
+      if record.finish == "finished" # プレイが完了したレコードのみ考慮
+        total_scores += record.scores.sum(:content)
+        total_rounds += 1
+      end
+    end
+  
+    if total_rounds > 0
+      average_score = (total_scores.to_f / total_rounds).round(1) # 小数点第一位まで四捨五入
+      return average_score
+    else
+      return 0.0 # 0.0を返すことで小数点以下がある形にする
+    end
+  end
+  
 
 end
   

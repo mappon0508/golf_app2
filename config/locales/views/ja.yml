@@ -6,4 +6,14 @@ users:
     new:
       title: 'アカウントを作成'
       to_login_page: 'ログインページへ'
+      very_weak_point:
+          not: "なし"
+          tee_shot: "ティーショット"
+          shot_within_two_hundredone_from_hundred_fifty: "150ヤードから200ヤードのショット"
+          shot_within_hundred_fifty_from_hundred: "100ヤードから150ヤードのショット"
+          approach_shot: "アプローチショット"
+          approach: "アプローチ"
+          bunker: "バンカーショット"
+          long_putt: "ロングパット"
+          short_putt: "ショートパット"
       

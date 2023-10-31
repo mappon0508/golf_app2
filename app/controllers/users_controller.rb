@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
 
   def show
@@ -15,9 +15,10 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:notice] = "アカウント作成に成功しました！"
       redirect_to main_path
     else
+      flash.now[:alert] = @user.errors.full_messages.join(", ")
       render 'new'
     end
   end
@@ -33,6 +34,20 @@ class UsersController < ApplicationController
       redirect_to main_path
     else
       render 'edit', status: :unprocessable_entity
+    end
+  end
+
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to main_path
+    else
+      render 'edit_password', status: :unprocessable_entity
     end
   end
 

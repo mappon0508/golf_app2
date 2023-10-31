@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+<%= button_to "メインページへ", main_path, method: :get, class: "btn btn-primary" %>
 <h1>
   <%= @user.name %>
 </h1>
@@ -6,4 +7,6 @@
 <p>ゴルフ歴: <%= @user.golf_experience %> 年</p>
 <%= link_to "アカウント設定", edit_user_path(current_user), class: "btn btn-primary" %>
 <%= link_to "お問い合わせ", current_user, class: "btn btn-primary" %>
-<%= link_to "ログアウト", logout_path, class: "btn btn-primary", data: { "turbo-method": :delete } %>
+<%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか？" }, class: "btn btn-primary" %>
+
+

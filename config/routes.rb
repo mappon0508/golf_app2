@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post   "/login",                                    to: "sessions#create"
   delete "/logout",                                   to: "sessions#destroy"
 
+  get "/users/:id/password_edit",                     to: "users#edit_password",     as: "edit_password"
+  get "/users/update_password",                       to: "users#update_password",   as: "update_password"
 
   get "/hole/:id",                                    to: "holes#new",               as: "hole_new"
   post "/holes",                                      to: "holes#create"  
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
   get "/practice_advices/show/:id",                   to: "practice_advices#show",  as: "practice_advice_show"
   
 
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :practice_menus
   resources :scores,  except: [:new,:create, :index]
   resources :golf_play_records,  except: [:new]
