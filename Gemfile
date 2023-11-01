@@ -6,8 +6,8 @@ ruby "3.1.2"
 # my add_gem
 gem 'rails-i18n'
 gem 'pry'
-gem 'bootstrap-sass'
-gem 'sass-rails'
+gem 'bootstrap-sass', '3.4.1'
+gem 'sass-rails', '6.0.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 
