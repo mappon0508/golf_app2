@@ -2,6 +2,10 @@
 <%= button_to "戻る", main_path, method: :get, class: "btn btn-primary" %>
 <h1>一週間の練習メニューを作成</h1>
 <% if @user.weak_point != "not" && @user.very_weak_point != "not_weak_point" %>
+  <div class="text-center">
+    <p>情報が少ないので練習アドバイスが作成できません</p>
+  </div>
+<% else %>
   <h2>今週のゴルフに使える練習時間を記入してください。</h2>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -26,10 +30,6 @@
         </div>
       <% end %>
     </div>
-  </div>
-<% else %>
-  <div class="text-center">
-    <p>情報が少ないので練習アドバイスが作成できません</p>
   </div>
 <% end %>
 
