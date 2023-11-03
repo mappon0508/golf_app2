@@ -1,0 +1,38 @@
+<% provide(:title, "Golf Course Show") %>
+<% if @golf_course.holes.any? %>
+<div class="button-group">
+  <%= button_to "戻る", golf_courses_path, method: :get, class: "btn btn-primary" %>
+  <%= button_to "スコア入力", new_golf_play_record_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
+  <%= button_to "コース名変更", edit_golf_course_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
+  <%= button_to "ホールを編集する", hole_edit_path(golf_course_id: @golf_course.id), method: :get, class: "btn btn-primary" %>
+  <%= button_to "コースの削除", golf_course_path(@golf_course), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %>
+</div>
+
+<h1><%= @golf_course.name %></h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ホール番号</th>
+        <th>Par</th>
+      </tr>
+    </thead>
+    <tbody class="hole-grid">
+      <% @golf_course.holes.each do |hole| %>
+        <tr>
+          <td><%= hole.number %>番ホール</td>
+          <td><%= hole.par %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  
+<div class="button-group">
+  <%= button_to "ホールの情報を登録する", hole_new_path(id: @golf_course.id), method: :get, class: "btn btn-primary" %>
+  <%= button_to "コースの削除", new_user_path, method: :get, class: "btn btn-primary" %>
+</div>
+<div class="text-center">
+<p>ホールの情報はありません</p>
+</div>
+<% end %>

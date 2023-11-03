@@ -1,0 +1,38 @@
+<% provide(:title, "Past Scores") %>
+<h1>プレイしたスコア一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>プレイ日付</th>
+      <th>ゴルフ場</th>
+      <th>トータルスコア</th> <!-- スコアからトータルスコアに変更 -->
+      <!-- 他に必要なヘッダーがあれば追加してください -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @golf_play_records.each do |play_record| %>
+      <tr>
+        <td><%= play_record.play_day %></td>
+        <td><%= play_record.golf_course.name %></td>
+        <td>
+          <% scores = play_record.scores %>
+          <% if scores.any? %>
+            <% total_score = scores.sum(:content) %> <!-- スコアの合計を計算 -->
+            <%= total_score %> <!-- トータルスコアを表示 -->
+          <% else %>
+            スコアなし
+          <% end %>
+        </td>
+        <td>
+        <% if play_record.finish == "not_finished" %>
+        <p>スコア入力中</p>
+        <% else %>
+        <p>スコア入力済</p>
+        <% end %>
+        </td>
+        <td><%= button_to "詳しく見る", scores_path(id: play_record.id), method: :get, class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

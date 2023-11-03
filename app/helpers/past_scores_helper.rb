@@ -1,0 +1,2 @@
+module PastScoresHelper
+end

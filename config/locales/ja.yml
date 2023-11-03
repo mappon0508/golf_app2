@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        very_weak_point: "非常に弱いポイント"
+    enum:
+      user:
+        very_weak_point:
+          not: "未設定"
+          tee_shot: "ティーショット"
+          shot_within_two_hundredone_from_hundred_fifty: "200-150のショット"
+          shot_within_hundred_fifty_from_hundred: "150-100のショット"
+          approach_shot: "100y以内ショット"
+          approach: "アプローチ"
+          bunker: "バンカー"
+          long_putt: "ロングパット"
+          short_putt: "ショートパット"
+        weak_point:
+          not_weak_point: "未設定"
+          weak_tee_shot: "ティーショットが苦手"
+          weak_shot_within_two_hundredone_from_hundred_fifty: "200-150のショット"
+          weak_shot_within_hundred_fifty_from_hundred: "150-100のショット"
+          weak_approach_shot: "100y以内ショット"
+          weak_approach: "アプローチ"
+          weak_bunker: "バンカーショット"
+          weak_long_putt: "ロングパット"
+          weak_short_putt: "ショートパット"

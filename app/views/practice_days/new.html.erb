@@ -1,0 +1,35 @@
+<% provide(:title, "Practice Days New") %>
+<%= button_to "戻る", main_path, method: :get, class: "btn btn-primary" %>
+<h1>一週間の練習メニューを作成</h1>
+<% if @user.weak_point != "not" && @user.very_weak_point != "not_weak_point" %>
+  <h2>今週のゴルフに使える練習時間を記入してください。</h2>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @practice_day, url: practice_days_path) do |f| %>
+        <% (0..6).each do |day| %>
+          <% current_date = Date.today + day.days %>
+          <% day_of_week = current_date.strftime("%A") %>
+          <% day_formatted = current_date.strftime("%Y年%m月%d日") %>
+
+          <div class="day-section">
+            <%= f.fields_for "practice_days[]", PracticeDay.new do |practice_day_form| %>
+              <%= practice_day_form.hidden_field :user_id, value: current_user.id %>
+              <%= practice_day_form.hidden_field :content, value: current_date %>
+              <%= practice_day_form.label :practice_time, "#{day_formatted} (#{day_of_week})" %>
+              <%= practice_day_form.number_field :practice_time, in: 0..24, value: 0, class: 'form-control' %>時間
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="text-center">
+        <%= f.submit "練習メニューを作成する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="text-center">
+    <p>情報が少ないので練習アドバイスが作成できません</p>
+  </div>
+<% end %>
+

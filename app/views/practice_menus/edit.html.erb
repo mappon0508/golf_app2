@@ -1,0 +1,68 @@
+<% provide(:title, "Practice Menu Edit") %>
+<h1>練習アドバイス編集</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @practice_menu ) do |f| %>
+      <%= f.label :title, "練習メニュータイトル" %>
+      <%= f.text_field :title, placeholder: "練習メニュータイトルを入力してください", class: "form-control" %>
+
+      <%= f.label :methods, "練習方法" %>
+      <%= f.text_field :methods, placeholder: "練習方法を入力してください", class: "form-control" %>
+
+      <%= f.label :objective, "練習の目的" %>
+      <%= f.text_field :objective, placeholder: "練習の目的を入力してください", class: "form-control" %>
+
+      <%= f.label :trick, "コツ" %>
+      <%= f.text_field :trick, placeholder: "コツを入力してください", class: "form-control" %>
+
+      <div class="form-group">
+        <%= f.label :level, "練習メニューのレベル"%><br>
+        <%= f.radio_button :level, "hundred_over",checked: true %>
+        <%= f.label :level, "スコア100以上" %>
+        <%= f.radio_button :level, "within_hundred" %>
+        <%= f.label :level, "スコア100切り" %>
+        <%= f.radio_button :level, "within_ninety" %>
+        <%= f.label :level, "スコア90切り" %>
+        <%= f.radio_button :level, "within_eighty_fiv" %>
+        <%= f.label :level, "スコア85切り" %>
+        <%= f.radio_button :level, "within_eighty" %>
+        <%= f.label :level, "スコア80切り" %>
+        <%= f.radio_button :level, "within_seventy_five" %>
+        <%= f.label :level, "スコア75切り" %>
+        <%= f.radio_button :level, "under_par" %>
+        <%= f.label :level, "スコアアンダーパー" %>
+     </div>
+
+     <div class="form-group">
+        <%= f.label :category, "練習メニューの種類"%><br>
+        <%= f.radio_button :category, "tee_shot",checked: true %>
+        <%= f.label :category, "ティーショット練習" %>
+        <%= f.radio_button :category, "shot_within_two_hundredone_from_hundred_fifty" %>
+        <%= f.label :category, "200~150yショット練習" %>
+        <%= f.radio_button :category, "shot_within_hundred_fifty_from_hundred" %>
+        <%= f.label :category, "150~100yショット練習" %>
+        <%= f.radio_button :category, "approach_shot" %>
+        <%= f.label :category, "100y内ショット練習" %>
+        <%= f.radio_button :category, "approach" %>
+        <%= f.label :category, "アプローチ練習" %>
+        <%= f.radio_button :category, "bunker" %>
+        <%= f.label :category, "バンカー練習" %>
+        <%= f.radio_button :category, "long_putt" %>
+        <%= f.label :category, "ロングパット練習" %>
+        <%= f.radio_button :category, "short_putt" %>
+        <%= f.label :category, "ショートパット練習" %>
+     </div>
+
+     <div class="form-group">
+        <%= f.label :practice_type, "練習メニューのタイプ"%><br>
+        <%= f.radio_button :practice_type, "short_game",checked: true %>
+        <%= f.label :practice_type, "ショートゲーム練習" %>
+        <%= f.radio_button :practice_type, "shot_game" %>
+        <%= f.label :practice_type, "ショットゲーム練習" %>
+     </div>
+
+
+      <%= f.submit "編集する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

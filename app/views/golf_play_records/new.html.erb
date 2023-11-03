@@ -1,0 +1,38 @@
+<% provide(:title, "Golf Play New") %>
+<h1>ラウンド設定</h1>
+<h2><%= @golf_course.name %></h2>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @golf_play_record)do |f| %>
+            <%= f.hidden_field :golf_course_id, value: @golf_course.id %>
+            <%= f.hidden_field :user_id, value: @user.id %>
+            <%= f.hidden_field :finish, value: @golf_play_record.finish %>
+
+            <div class="field">
+              <%= f.label :play_day, "プレイ日" %><br>
+              <%= f.date_select :play_day, 
+                               {  include_blank: true,
+                                 use_two_digit_numbers: true,
+                                 selected: Date.current.to_date },
+                               { class: "input-tab birthday-select" } %>
+            </div>
+
+
+            <div class="form-group">
+                <%= f.label :weather, "天気"%><br>
+                <%= f.radio_button :weather, "sunny" %>
+                <%= f.label :weather, "晴れ" %>
+                <%= f.radio_button :weather, "cloudy" %>
+                <%= f.label :weather, "曇り" %>
+                <%= f.radio_button :weather, "rain" %>
+                <%= f.label :weather, "雨" %>
+                <%= f.radio_button :weather, "snow" %>
+                <%= f.label :weather, "雪" %>
+            </div>
+
+
+            <%= f.submit "スコア入力へ", class: "btn btn-primary" %>
+        <% end %>
+  </div>
+</div>

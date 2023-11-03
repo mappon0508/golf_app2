@@ -1,0 +1,2 @@
+module PracticeAdvicesHelper
+end

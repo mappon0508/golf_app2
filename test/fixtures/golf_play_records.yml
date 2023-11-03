@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  golf_course: one
+  play_day: 2023-10-10
+  weather: 1
+
+two:
+  golf_course: two
+  play_day: 2023-10-10
+  weather: 1

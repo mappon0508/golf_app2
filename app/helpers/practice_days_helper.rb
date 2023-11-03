@@ -1,0 +1,2 @@
+module PracticeDaysHelper
+end

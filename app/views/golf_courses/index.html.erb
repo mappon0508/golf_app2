@@ -1,0 +1,22 @@
+<% provide(:title, "Golf Course Index") %>
+<%= button_to "メインページへ", main_path, method: :get, class: "btn btn-primary" %>
+<h1>ゴルフコース一覧</h1>
+<h2>スコア登録するゴルフ場を選択してください。</h2>
+<div class="practice-menu-container">
+<% if @golf_courses.present? %>
+    <%= button_to "新しくゴルフ場を作成する", new_golf_course_path, method: :get, class: "btn btn-primary" %>
+    <ul>
+        <% @golf_courses.each do |golf_course| %>
+          <li class="practice-menu-item">
+            <%= button_to "スコア入力へ", golf_course_path(golf_course.id), method: :get, class: "btn btn-primary btn-details" %>
+            <%= "#{golf_course.name}" %>
+          </li>
+        <% end %>
+    </ul> 
+</div>
+<% else %>
+    <%= button_to "ゴルフ場作成", new_golf_course_path, method: :get, class: "btn btn-primary" %>
+   <div class="text-center" style="font-size: 24px;">
+    ゴルフ場を作成してください。
+   </div>
+<% end %>

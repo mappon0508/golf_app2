@@ -1,0 +1,9 @@
+<% provide(:title, "Practice Menu Show") %>
+<h1><%= @practice_menu.title %></h1>
+<p>練習方法: <%= @practice_menu.methods %></p>
+<p>練習の目的: <%= @practice_menu.objective %></p>
+<p>コツ: <%= @practice_menu.trick %></p>
+<p>練習メニューのレベル: <%= level_text(@practice_menu.level) %></p>
+<%= button_to "編集", edit_practice_menu_path(@practice_menu.id), method: :get, class: "btn btn-primary" %>
+<%= button_to "練習アドバイスの削除", practice_menu_path(@practice_menu.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "btn btn-danger" %>
+<%= button_to "戻る", practice_menus_path, method: :get, class: "btn btn-primary" %>

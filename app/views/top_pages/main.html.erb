@@ -1,0 +1,77 @@
+<% provide(:title, "Main") %>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <% if current_user && current_user.best_score %>
+      <p>ベストスコア <span class="score-green"><%= current_user.best_score %></span></p>
+    <% else %>
+      <p>ベストスコアはまだ設定されていません.</p>
+    <% end %>
+    <% if @user && @average_score %>
+      <p>平均スコア <span class="average_score-green"><%= @average_score %></span></p>
+    <% else %>
+      <p>平均スコアが出せません</p>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+  <% if @user.very_weak_point.present? %>
+    <p>あなたの1番苦手な分野 |<%= t("activerecord.enum.user.very_weak_point." + @user.very_weak_point) %></p>
+  <% else %>
+    <p>苦手な分野はまだ設定されていません。</p>
+  <% end %>
+
+  <% if @user.weak_point.present? %>
+    <p>あなたの2番目に苦手な分野 |<%= t("activerecord.enum.user.weak_point." + @user.weak_point) %></p>
+  <% else %>
+    <p>弱点はまだ設定されていません。</p>
+  <% end %>
+  </div>
+</div>
+
+<h2>今週の練習メニュー</h2>
+
+<div class="calendar">
+  <% if @practice_schedules_by_day.present? %>
+    <% @practice_schedules_by_day.each do |day, schedules| %>
+      <div class="menu-day">
+        <div class="details">
+          <%= button_to "詳しく見る", practice_advices_path(schedules.first.practice_day_id), method: :get, class: "btn btn-primary" %>
+        </div>
+        <div class="date">
+          <%="#{day.strftime("%m月%d日")}"  %>
+        </div>
+        <div class="menus">
+          <ul>
+            <% unique_schedules = schedules.uniq { |schedule| schedule.practice_menu_id } %>
+            <% unique_schedules.each do |schedule| %>
+              <% practice_menu = PracticeMenu.find(schedule.practice_menu_id) %>
+              <% total_minutes = schedules.count { |s| s.practice_menu_id == schedule.practice_menu_id } * 30 %>
+              <% hours = total_minutes / 60 %>
+              <% minutes = total_minutes % 60 %>
+              <li>
+                <%= "#{practice_menu.title} | #{hours}時間#{minutes}分" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>今週の練習メニューは作成されていません</p>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

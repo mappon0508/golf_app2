@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  golf_course: one
+  hole: 1
+  par: 1
+
+two:
+  golf_course: two
+  hole: 1
+  par: 1

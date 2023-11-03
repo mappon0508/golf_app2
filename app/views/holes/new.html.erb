@@ -1,0 +1,27 @@
+<% provide(:title, "Holes New") %>
+<h1><%= @golf_course.name %></h1>
+<%= button_to "戻る", golf_course_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @hole, url: holes_path) do |f| %>
+      
+      <% (1..18).each do |number| %>
+        <div class="hole-section">
+          <%= f.fields_for "holes[]", Hole.new do |hole_form| %>
+            <%= hole_form.hidden_field :golf_course_id, value: @golf_course.id %>
+            <%= hole_form.hidden_field :number, value: number %>
+
+            <%= hole_form.label :par, "#{number} 番ホール" %><br>
+
+            <% par_options = ["par3", "par4", "par5"] %>
+            <%= hole_form.select :par, par_options, { selected: "par4" }, { class: 'form-control' } %>
+          <% end %>
+        </div>
+      <% end %>
+      
+      <%= f.submit "登録する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+

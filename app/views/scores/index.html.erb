@@ -1,0 +1,102 @@
+<% provide(:title, "Score Index") %>
+<h1>スコアカード</h1>
+<h2><%= @golf_course.name %></h2>
+<h2><%= @golf_play_record.play_day %></h2>
+<%= button_to "プレイ日の情報を編集する", edit_golf_play_record_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
+
+<% fairway_kept_holes = 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>ホール</th>
+      <th>パー</th>
+      <th>スコア</th>
+      <th>パット</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total_score = 0 %>
+    <% total_putt = 0 %>
+    <% total_par = 0 %>
+    <% @holes.each do |hole| %>
+      <tr>
+        <td><%= hole.number %>番ホール</td>
+        <td><%= hole.par %></td>
+        <td>
+          <% score = @scores.find_by(hole_id: hole.id) %>
+          <% if score && score.tee_shot != 0 %>
+            <%= score.content %>
+            <% total_score += score.content %>
+            <% fairway_kept_holes += 1 if score.content.to_i <= hole.par[/\d+$/].to_i %>
+          <% elsif score %>
+            <%= score.content %>
+            <% total_score += score.content %>
+          <% else %>
+            スコアなし
+          <% end %>
+        </td>
+        <td>
+          <% if score %>
+            <%= score.putt %>
+            <% total_putt += score.putt %>
+          <% else %>
+            パットなし
+          <% end %>
+        </td>
+        <td>
+          <%= button_to "スコア入力", new_scores_path(id: @golf_play_record.id, hole_id: hole.id), method: :get, class: "btn btn-primary" %>
+        </td>
+        <% total_par += hole.par[/\d+$/].to_i %>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>合計</td>
+      <td><%= total_par %></td>
+      <td><%= total_score %></td>
+      <td><%= total_putt %></td>
+      <td><%= button_to "スコア入力を終了", past_scores_path, method: :get, class: "btn btn-primary" %></td>
+    </tr>
+    <tr>
+      <td>フェアウェイキープ率</td>
+      <td><%= @percentage_of_fairways_kept %></td>
+    </tr>
+    <tr>
+      <td>パーオン率</td>
+      <td><%= @par_on_percentage %></td>
+    </tr>
+    <tr>
+      <td>200y~150y以内パーオン率</td>
+      <td><%= @within_200_to_150_par_on_percentage %></td>
+    </tr>
+    <tr>
+      <td>150y~100y以内パーオン率</td>
+      <td><%= @within_150_to_100_par_on_percentage %></td>
+    </tr>
+    <tr>
+      <td>100y以内2ピン寄せ率</td>
+      <td><%= @within_100_two_pin_percentage %></td>
+    </tr>
+    <tr>
+      <td>アプローチ成功率</td>
+      <td><%= @approach_success_rate %></td>
+    </tr>
+    <tr>
+      <td>サンドセーブ率</td>
+      <td><%= @bunker_save_rate %></td>
+    </tr>
+    <tr>
+      <td>3パット率</td>
+      <td><%= @three_putt_rate %></td>
+    </tr>
+    <tr>
+      <td>ロングパット成功率</td>
+      <td><%= @long_putt_success_rate %></td>
+    </tr>
+    <tr>
+      <td>ショートパット成功率</td>
+      <td><%= @short_putt_success_rate %></td>
+    </tr>
+  </tfoot>
+</table>

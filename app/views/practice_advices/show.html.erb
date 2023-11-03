@@ -1,0 +1,26 @@
+<% provide(:title, "Practice Advice Edit") %>
+<%= link_to "戻る", :back, class: "btn btn-primary" %>
+<h1><%= @practice_advice.title %></h1>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>練習方法</h3>
+    <p><%= @practice_advice.methods %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>目的</h3>
+    <p><%= @practice_advice.objective %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>コツ</h3>
+    <p><%= @practice_advice.trick %></p>
+  </div>
+</div>
+

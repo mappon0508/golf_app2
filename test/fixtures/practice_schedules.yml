@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  practice_day: one
+  practice_menu: one
+
+two:
+  practice_day: two
+  practice_menu: two

@@ -1,0 +1,267 @@
+/* 通常のスタイル */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+
+/* ヘッダを固定するスタイル */
+/* universal */
+
+
+body {
+  padding-top: 60px;
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 599px) {
+  body {
+    padding-top: 80px;
+  }
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.btn {
+  background-color: green;
+  color: white;
+  border-radius: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 100px;
+}
+
+table {
+  margin: 0 auto;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+th, td {
+  padding: 10px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-light;
+}
+
+h3 {
+  font-size: 2em; 
+  margin-bottom: 20px; 
+  color: rgb(35, 178, 35);
+}
+
+p {
+  font-size: 1.5em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+header.navbar.navbar-fixed-top {
+  background-color: rgb(50, 130, 195);
+}
+
+.nav.navbar-nav.navbar-right a {
+  color: rgb(255, 255, 255);
+}
+
+.nav.navbar-nav.navbar-right a:hover {
+  color: rgb(96, 223, 195);
+}
+
+/* 以下、その他のスタイルの定義 */
+
+
+/* menu-day */
+
+/* 平均スコアとベストスコアの数字の装飾 */
+.score-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 20px; /* 例: より大きなパディング */
+  width: 3em; /* 例: より大きな幅 */
+  height: 3em; /* 例: より大きな高さ */
+  font-weight: bold;
+}
+
+.average_score-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 20px; /* 例: より大きなパディング */
+  width: 3em; /* 例: より大きな幅 */
+  height: 3em; /* 例: より大きな高さ */
+  font-weight: bold;
+  margin-left: 27px;
+}
+/* スコアとスコアの間隔を調整 */
+
+
+/* 各セクションのスタイル */
+
+.class-groupe {
+  display: inline-block; /* インラインブロック要素にする */
+  vertical-align: top; /* 上端に配置 */
+  margin-right: 20px; /* 要素間の隙間を設定 */
+}
+
+
+.score-number {
+    margin-left: 5px;
+}
+  
+
+.menu-day ul {
+  list-style: none;
+  padding: 0;
+}
+
+.flash-message {
+  border-radius: 5px;
+  padding: 16px 24px;
+  margin: 16px 0px;
+}
+ 
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+ 
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}
+
+
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-group .btn {
+  margin: 5px; /* ボタン間の隙間を調整 */
+}
+
+
+.holes-container {
+  display: flex;
+  flex-direction: row; /* 子要素を水平方向に並べる */
+  gap: 10px; /* 子要素間の隙間を調整 */
+}
+
+.hole {
+  flex: 1;
+  text-align: center; /* 子要素内のテキストを中央揃え */
+}
+
+.menu-day {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.date {
+  font-size: 1.6em;
+}
+
+.date, .details, .menus {
+  display: inline-block; /* 要素を横に並べる */
+  vertical-align: top; /* 上端に揃える */
+  margin-right: 10px; /* 両要素の間隔を調整 */
+}
+
+.menus {
+  margin-top: 50px; 
+}
+
+.col-md-6 {
+  font-size: 1.3em;
+  margin-top: 50px; 
+  margin-bottom: 100px;
+}
+
+.practice-menu-container {
+  font-size: 1.6em;
+}
+
+.practice-menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .btn-details {
+    margin-right: 10px; 
+  }
+}
+
+.col-md-12 {
+  text-align: left;
+  margin-top: 15px; 
+  margin-bottom: 50px; 
+}

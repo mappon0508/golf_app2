@@ -1,0 +1,36 @@
+<% provide(:title, "Golf Course Edit") %>
+<h1>ゴルフ場の編集</h1>
+<%= button_to "戻る", golf_course_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @golf_course)do |f| %>
+            <%= f.label :name, "コース名" %>
+            <%= f.text_field :name, placeholder: "コース名を入力してください", class: "form-control" %>
+
+            <%= f.submit "登録", class: "btn btn-primary" %>
+        <% end %>
+  </div>
+</div>
+<% if @golf_course.holes.any? %>
+  <%= button_to "ホールの情報を編集する", hole_edit_path(golf_course_id: @golf_course.id), method: :get, class: "btn btn-primary" %>
+  <h2>ホール情報</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ホール番号</th>
+        <th>Par</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @golf_course.holes.each do |hole| %>
+        <tr>
+          <td><%= hole.number %>番ホール</td>
+          <td><%= hole.par %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>ホール情報はありません。</p>
+  <%= button_to "ホールの情報を登録する", hole_id_path(id: @golf_course.id), method: :get, class: "btn btn-primary" %>
+<% end %>

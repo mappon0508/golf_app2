@@ -1,0 +1,127 @@
+<% provide(:title, "Score New") %>
+<div class="holes-container">
+  <% @holes.each do |hole| %>
+    <div class="hole">
+      <%= link_to "Hole #{hole.number}", new_scores_path(id: @golf_play_record.id, hole_id: hole.id) %>
+    </div>
+  <% end %>
+</div>
+
+<div class="button-group">
+<%= button_to "スコアカード", scores_path, method: :get, class: "btn btn-primary" %>
+<%= button_to "スコア入力を終了", scores_path, method: :get, class: "btn btn-primary" %>
+</div>
+
+<h1><%= @golf_course.name %></h1>
+<h2>このホールのスコア入力をしてください。</h2>
+<h2><%= @golf_play_record.play_day %></h2>
+
+<h2><%= "#{@hole.number}Hole (Par: #{@hole.par})" %></h2>
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @score, url: create_score_path, method: :post)do |f| %>
+            <%= f.hidden_field :golf_play_record_id, value: @golf_play_record.id %>
+            <%= f.hidden_field :hole_id, value: @hole.id %>
+
+            <div>
+              <label for="score">スコア</label>
+              <br>
+              <% (1..15).each do |num| %>
+                <%= f.radio_button :content, num, checked: (num == 4) %>
+                <%= f.label :content, num %>
+              <% end %>
+            </div>
+
+            <div>
+              <label for="putt">PUTT</label>
+              <br>
+              <% (1..10).each do |num| %>
+                <%= f.radio_button :putt, num, checked: (num == 2) %>
+                <%= f.label :putt, num %>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :tee_shot, "Tee Shot" %><br>
+              <%= f.radio_button :tee_shot, "no_tee_shot" %>
+              <%= f.label :tee_shot, "打ってない" %>
+              <%= f.radio_button :tee_shot, "removed_to_the_left" %>
+              <%= f.label :tee_shot, "左" %>
+              <%= f.radio_button :tee_shot, "fairway_keep" %>
+              <%= f.label :tee_shot, "フェアウェイ" %>
+              <%= f.radio_button :tee_shot, "removed_to_the_right" %>
+              <%= f.label :tee_shot, "右" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :second_shot_distance, "パーオンショットの距離" %><br>
+              <%= f.radio_button :second_shot_distance, "no_shot" %>
+              <%= f.label :second_shot_distance, "打ってない" %>
+              <%= f.radio_button :second_shot_distance, "two_hundred_shot_over" %>
+              <%= f.label :second_shot_distance, "200y 以上" %>
+              <%= f.radio_button :second_shot_distance, "shot_within_two_hundredone_from_hundred_fifty" %>
+              <%= f.label :second_shot_distance, "200y~150y 以内" %>
+              <%= f.radio_button :second_shot_distance, "shot_within_hundred_fifty_from_hundred" %>
+              <%= f.label :second_shot_distance, "150y~100y  以内" %>
+              <%= f.radio_button :second_shot_distance, "within_hundred_yard" %>
+              <%= f.label :second_shot_distance, "100y  以内" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :approach_shot, "100y以内のショット" %><br>
+              <%= f.radio_button :approach_shot, "no_approach_shot" %>
+              <%= f.label :approach_shot, "打ってない" %>
+              <%= f.radio_button :approach_shot, "missed_the_green" %>
+              <%= f.label :approach_shot, "グリーンを外した" %>
+              <%= f.radio_button :approach_shot, "on_the_green" %>
+              <%= f.label :approach_shot, "グリーンにのった" %>
+              <%= f.radio_button :approach_shot, "pulled_it_nside_the_two_pin" %>
+              <%= f.label :approach_shot, "2ピンに寄せた" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :approach, "アプローチ" %><br>
+              <%= f.radio_button :approach, "no_approach" %>
+              <%= f.label :approach, "アプローチしてない" %>
+              <%= f.radio_button :approach, "successful_approach" %>
+              <%= f.label :approach, "寄せワンできた" %>
+              <%= f.radio_button :approach, "approach_failure" %>
+              <%= f.label :approach, "寄せワン失敗" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :bunker_save, "バンカーセーブ" %><br>
+              <%= f.radio_button :bunker_save, "no_bunker" %>
+              <%= f.label :bunker_save, "バンカーショットしてない" %>
+              <%= f.radio_button :bunker_save, "bunker_save_successfully" %>
+              <%= f.label :bunker_save, "バンカーセーブできた" %>
+              <%= f.radio_button :bunker_save, "bunker_save_failure" %>
+              <%= f.label :bunker_save, "バンカーセーブ失敗" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :long_putt, "5y以上パットを1mに寄せ" %><br>
+              <%= f.radio_button :long_putt, "no_long_putt" %>
+              <%= f.label :long_putt, "打ってない" %>
+              <%= f.radio_button :long_putt, "long_putt_successfully" %>
+              <%= f.label :long_putt, "成功" %>
+              <%= f.radio_button :long_putt, "long_putt_failure" %>
+              <%= f.label :long_putt, "失敗" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :short_putt, "ショートパット成功率1.5m以内" %><br>
+              <%= f.radio_button :short_putt, "no_short_putt" %>
+              <%= f.label :short_putt, "打ってない" %>
+              <%= f.radio_button :short_putt, "short_putt_successfully" %>
+              <%= f.label :short_putt, "成功" %>
+              <%= f.radio_button :short_putt, "short_putt_failure" %>
+              <%= f.label :short_putt, "失敗" %>
+            </div>
+
+            <%= f.submit "保存して次のホールへ", class: "btn btn-primary" %>
+        <% end %>
+  </div>
+</div>

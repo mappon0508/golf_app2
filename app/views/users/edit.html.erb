@@ -1,0 +1,43 @@
+<% provide(:title, "Edit user") %>
+<h1>アカウント設定</h1>
+
+<%= link_to "メールアドレス・パスワード変更", edit_password_path(@user.id), class: "btn btn-primary" %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user) do |f| %>
+
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <div class="field">
+        <%= f.label :birthday, "生年月日" %><br>
+        <%= f.date_select :birthday, { start_year: 1950, end_year: 2023,
+                                      include_blank: true,
+                                      use_two_digit_numbers: true },
+                    { class: "input-tab birthday-select" } %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :gender %><br>
+        <%= f.radio_button :gender, "man", checked: @user.gender == "man" %>
+        <%= f.label :gender, "男性" %>
+        <%= f.radio_button :gender, "woman", checked: @user.gender == "woman" %>
+        <%= f.label :gender, "女性" %>
+        <%= f.radio_button :gender, "other", checked: @user.gender == "other" %>
+        <%= f.label :gender, "その他" %>
+      </div>
+
+
+      <%= f.label :golf_experience, "ゴルフ歴" %>
+      <%= f.number_field :golf_experience, class: "form-control", min: 0 %>年
+
+      <%= f.label :best_score, "ベストスコア" %>
+      <%= f.number_field :best_score, class: "form-control", min: 18 %>
+
+      <div class="text-center">
+      <%= f.submit "保存する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

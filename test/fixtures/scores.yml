@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hole: one
+  content: 1
+  tee_shot: 1
+  second_shot_distance: 1
+  approach_shot: 1
+  approach: 1
+  bunker_save: 1
+  long_putt: 1
+  short_putt: 1
+
+two:
+  hole: two
+  content: 1
+  tee_shot: 1
+  second_shot_distance: 1
+  approach_shot: 1
+  approach: 1
+  bunker_save: 1
+  long_putt: 1
+  short_putt: 1

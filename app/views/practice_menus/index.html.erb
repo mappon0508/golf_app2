@@ -1,0 +1,13 @@
+<% provide(:title, "Practice Menu Index") %>
+<h1>練習アドバイス一覧</h1>
+<% if @practice_menus.present? %>
+    <%= button_to "練習アドバイス作成", new_practice_menu_path, method: :get, class: "btn btn-primary" %>
+    <ul>
+        <% @practice_menus.each do |practice_menu| %>
+            <li><%= link_to practice_menu.title, practice_menu_path(practice_menu.id)%></li>
+        <% end %>
+    </ul> 
+<% else %>
+    <p>練習メニューを作成してください。</p>
+    <%= button_to "練習メニュー作成", new_practice_menu_path, method: :get, class: "btn btn-primary" %>
+<% end %>
