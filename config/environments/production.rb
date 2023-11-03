@@ -28,7 +28,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false # ここを `false` に修正
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -72,7 +72,7 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-  config.assets.compile = true
+  # config.assets.compile = true # すでに上で設定していますので、ここはコメントアウトまたは削除
 
   config.assets.initialize_on_precompile = false
   # Don't log any deprecations.
