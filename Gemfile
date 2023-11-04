@@ -10,7 +10,7 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'sass-rails', '6.0.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
-
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"

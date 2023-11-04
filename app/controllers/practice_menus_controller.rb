@@ -2,7 +2,7 @@ class PracticeMenusController < ApplicationController
 
 
     def index
-        @practice_menus = PracticeMenu.all
+        @practice_menus = PracticeMenu.all.page((params[:page]))
     end
 
     def show 
