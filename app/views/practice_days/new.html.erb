@@ -1,8 +1,8 @@
 <% provide(:title, "Practice Days New") %>
 <%= button_to "戻る", main_path, method: :get, class: "btn btn-primary" %>
 <h1>一週間の練習メニューを作成</h1>
-<% if @user.very_weak_point = "not" && @user.weak_point = "not_weak_point" %>
-  <div class="text-center">
+<% if @user.very_weak_point == "not" && @user.weak_point == "not_weak_point" %>
+  <div class="text-center">                                
     <p>情報が少ないので練習アドバイスが作成できません</p>
   </div>
 <% else %>
