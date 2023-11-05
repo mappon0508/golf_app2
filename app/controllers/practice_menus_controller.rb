@@ -16,7 +16,7 @@ class PracticeMenusController < ApplicationController
     def create 
         @practice_menu = PracticeMenu.new(practice_menu_params)
         if @practice_menu.save
-          flash[:success] = "ゴルフ場作成に成功しました。"
+          flash[:notice] = "練習アドバイスの作成に成功しました。"
           redirect_to practice_menus_path
         else
           render 'new'
@@ -30,7 +30,7 @@ class PracticeMenusController < ApplicationController
     def update
         @practice_menu = PracticeMenu.find(params[:id])
         if @practice_menu.update(practice_menu_params)
-            flash[:success] = "ゴルフ場情報を更新しました。"
+            flash[:notice] = "練習アドバイスを更新しました。"
             redirect_to practice_menu_path(@practice_menu.id)
         else
             render 'edit'
@@ -40,7 +40,7 @@ class PracticeMenusController < ApplicationController
     def destroy
         @practice_menu = PracticeMenu.find(params[:id])
         @practice_menu.destroy
-        redirect_to practice_menus_path, notice: "コースとホールが削除されました。"
+        redirect_to practice_menus_path, notice: "練習メニューが削除されました"
     end
 
 
