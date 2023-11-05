@@ -8,17 +8,6 @@
 /* universal */
 
 
-body {
-  padding-top: 60px; // デフォルトのpadding-top
-
-  @media (max-width: 1024px) {
-    padding-top: 60px; // 幅が1024px以下の場合も60pxのpaddingを維持
-  }
-
-  @media (max-width: 599px) {
-    padding-top: 80px; // 幅が599px以下の場合、80pxのpaddingを設定
-  }
-}
 
 section {
   overflow: auto;

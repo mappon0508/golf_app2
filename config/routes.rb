@@ -7,7 +7,7 @@ Rails.application.routes.draw do
                 
   get    "/login",                                    to: "sessions#new"
   post   "/login",                                    to: "sessions#create"
-  delete "/logout",                                   to: "sessions#destroy"
+  get    "/logout",                                   to: "sessions#destroy"
 
   get "/users/:id/password_edit",                     to: "users#edit_password",     as: "edit_password"
   get "/users/update_password",                       to: "users#update_password",   as: "update_password"
