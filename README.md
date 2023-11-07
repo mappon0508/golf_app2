@@ -1,8 +1,6 @@
 # [Pro Coach 　-ゴルフをした事ない人がアンダーパーでラウンドできるまでサポートするアプリ-]
 
 ## サービス概要
-
-
 Pro coach（プロコーチ）はゴルフ未経験の方から上級者まで質問に回答してもらう事によって、その人に合った正しい、練習をおすすめするアプリです。
 基本は、新規登録の際に質問（ベストスコア、ゴルフ歴、年齢など）をして、一週間ごとにその人にあった練習を７日間に分けておすすめします。
 ゴルフが上手くなりたいけど、どんな練習をどれぐらいしていいかわからない方の悩みを解決するアプリになっております。
@@ -73,4 +71,4 @@ YouTubeやネットなどには沢山の上達に繋がる情報があります�
 Figma：https://www.figma.com/file/Z9aio9VbEiXMpdq4iuW1z3/%E7%84%A1%E9%A1%8C?type=design&node-id=0%3A1&mode=design&t=sCyAGn28EXlreu3H-1
 
 ### ER図
-drow.io: https://drive.google.com/file/d/1EDc7eDT68y7Y3ycdI0ggkB1n13LtENLo/view?usp=sharing
+drow.io: https://app.diagrams.net/?src=about#G16bbFr-4icPK4AUOvKDBu8j2Hk4cLMoiC
