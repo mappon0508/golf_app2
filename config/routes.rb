@@ -1,39 +1,62 @@
 Rails.application.routes.draw do
   root   "top_pages#home"
 
-  get    "/main",                                     to: "top_pages#main"
-  get    "/how_to_use",                               to: "top_pages#how_to_use"
-  get    "/terms_of_use",                             to: "top_pages#terms_of_use"
+  resources :top_pages, only: [] do
+    collection do
+      get :main
+      get :how_to_use
+      get :terms_of_use
+    end
+  end
                 
-  get    "/login",                                    to: "sessions#new"
-  post   "/login",                                    to: "sessions#create"
-  get    "/logout",                                   to: "sessions#destroy"
+  resources :sessions, only: [:new, :create], path: "login"
+  resource :sessions, only: [:destroy], path: '/logout', as: :logout
 
-  get "/users/:id/password_edit",                     to: "users#edit_password",     as: "edit_password"
-  get "/users/update_password",                       to: "users#update_password",   as: "update_password"
+  resources :users do
+    member do
+      get "password_edit", to: "users#edit_password"
+    end
+    collection do
+      patch "update_password", to: "users#update_password"
+    end
+  end
 
-  get "/hole/:id",                                    to: "holes#new",               as: "hole_new"
-  post "/holes",                                      to: "holes#create"  
-  get "/hole/:golf_course_id/edit",                   to: "holes#edit",              as: "hole_edit"
-  patch "holes/:golf_course_id",                      to: "holes#update",            as: "hole_update"
-  
-  get "/golf_play_records/:id/new",                   to: "golf_play_records#new",   as: "new_golf_play_record"
-  
-  get "/score/:id/new",                               to: "scores#new",              as: "new_score"
+  resources :holes, only: [] do
+    member do
+      get :new
+    end
+  end
+  resources :holes, only: [:create, :edit, :update]
+
+  resources :golf_play_records, only: [] do
+    member do
+      get :new
+    end
+  end
+
+  resources :scores, only: [] do
+    member do
+       get :index
+      get :new
+    end
+  end
+  resources :scores, only: [:create]
   get "/score/:id/:hole_id/new",                      to: "scores#next_new",         as: "new_scores"
-  post "/score/create",                               to: "scores#create",           as: "create_score"
-  get "/scores/:id/",                                 to: "scores#index",            as: "scores"
-  
-  get "/past_scores",                                 to: "past_scores#index"
 
-  get "/practice_days/new",                           to: "practice_days#new"
-  post "/practice_days",                              to: "practice_days#create",    as: "practice_days"
+  resources :past_scores, only: [:index]
+  resources :practice_days, only: [:new, :create]
 
-  get "/practice_advice",                             to: "practice_advices#create", as: "practice_advice"
+  resources :practice_advices, only: [] do
+    collection do
+      get :create
+    end
+    member do
+      get :index
+      get :show, path: :show, as: :show
+    end
+  end
 
-  get "/practice_advices/:id",                        to: "practice_advices#index",  as: "practice_advices"
-  get "/practice_advices/show/:id",                   to: "practice_advices#show",  as: "practice_advice_show"
-  
+  resources :practice_advices, only: [:index, :create, :show]
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :practice_menus

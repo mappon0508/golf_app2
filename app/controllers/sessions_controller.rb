@@ -1,15 +1,16 @@
-class SessionsController < ApplicationController
-  def new
-  end
+# frozen_string_literal: true
 
+# GolfCoursesControllerはログインに関連するアクションを管理するコントローラです。
+class SessionsController < ApplicationController
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       reset_session
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
-      redirect_to main_path
+      redirect_to main_top_pages_path
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new', status: :unprocessable_entity

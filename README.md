@@ -110,7 +110,7 @@ YouTubeやネットなどには沢山の上達に繋がる情報があります�
 - 練習アドバイス詳細機能
 - 苦手分野分析機能
 
-管理画面で行う機能
+管理者権限があるユーザーが行える機能
 - 練習メニュー作成機能
 - 練習メニュー編集機能
 - 練習メニュー削除機能
@@ -136,7 +136,7 @@ Figma：https://www.figma.com/file/Z9aio9VbEiXMpdq4iuW1z3/%E7%84%A1%E9%A1%8C?typ
 drow.io: https://app.diagrams.net/?src=about#G16bbFr-4icPK4AUOvKDBu8j2Hk4cLMoiC
 
 **### 使用技術**
-【フレームワーク/言語】Ruby on Rails (7.0.6), Ruby (3.2.2), JavaScript
+【フレームワーク/言語】Ruby on Rails (7.0.6), Ruby (3.1.2), JavaScript
 【UI】Bootstrap、font-awesome-sass
 【データベース】PostgreSQL
 【インフラ】Heroku

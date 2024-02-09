@@ -1,7 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <% if logged_in? %>
-      <%= link_to "Pro Coach", main_path, id: "logo" %>
+      <%= link_to "Pro Coach", main_top_pages_path, id: "logo" %>
     <% else %>
       <%= link_to "Pro Coach", root_path, id: "logo" %>
     <% end %>
@@ -10,8 +10,8 @@
         <% if logged_in? %>
           <li><%= link_to "スコア登録", golf_courses_path %></li>
           <li><%= link_to "過去のスコア", past_scores_path %></li>
-          <li><%= link_to "練習メニュー", main_path %></li>
-          <li><%= link_to "練習メニューを作成", practice_days_new_path %></li>
+          <li><%= link_to "練習メニュー", main_top_pages_path %></li>
+          <li><%= link_to "練習メニューを作成", new_practice_day_path %></li>
           <% if current_user.admin? %>
             <li><%= link_to "練習アドバイス作成", new_practice_menu_path %></li>
             <li><%= link_to "練習アドバイス一覧", practice_menus_path %></li>
@@ -23,7 +23,7 @@
           </li>
         <% else %>
           <li><%= link_to (t 'defaults.register'),   new_user_path %></li>
-          <li><%= link_to (t 'defaults.login'), login_path %></li>
+          <li><%= link_to (t 'defaults.login'), new_session_path %></li>
         <% end %>
       </ul>
     </nav>

@@ -2,14 +2,14 @@
 <div class="holes-container">
   <% @holes.each do |hole| %>
     <div class="hole">
-      <%= link_to "Hole #{hole.number}", new_scores_path(id: @golf_play_record.id, hole_id: hole.id) %>
+      <%= link_to "Hole #{hole.number}", score_path(id: @golf_play_record.id, hole_id: hole.id) %>
     </div>
   <% end %>
 </div>
 
 <div class="button-group">
-<%= button_to "スコアカード", scores_path, method: :get, class: "btn btn-primary" %>
-<%= button_to "スコア入力を終了", scores_path, method: :get, class: "btn btn-primary" %>
+<%= button_to "スコアカード", score_path(id: @golf_play_record.id), method: :get, class: "btn btn-primary" %>
+<%= button_to "スコア入力を終了", score_path(id: @golf_play_record.id), method: :get, class: "btn btn-primary" %>
 </div>
 
 <h1><%= @golf_course.name %></h1>
@@ -21,7 +21,7 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @score, url: create_score_path, method: :post)do |f| %>
+        <%= form_with(model: @score, url: scores_path, method: :post)do |f| %>
             <%= f.hidden_field :golf_play_record_id, value: @golf_play_record.id %>
             <%= f.hidden_field :hole_id, value: @hole.id %>
 

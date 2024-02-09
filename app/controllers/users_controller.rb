@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# GolfCoursesControllerはユーザーに関連するアクションを管理するコントローラです。
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: %i[edit update destroy]
+  before_action :correct_user,   only: %i[edit update]
 
   def show
     @user = User.find(params[:id])
@@ -15,10 +18,10 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       log_in @user
-      flash[:notice] = "アカウント作成に成功しました！"
-      redirect_to main_path
+      flash[:notice] = 'アカウント作成に成功しました！'
+      redirect_to main_top_pages_path
     else
-      flash.now[:alert] = @user.errors.full_messages.join(", ")
+      flash.now[:alert] = @user.errors.full_messages.join(', ')
       render 'new'
     end
   end
@@ -30,8 +33,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to main_path
+      flash[:success] = 'Profile updated'
+      redirect_to main_top_pages_path
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -44,8 +47,8 @@ class UsersController < ApplicationController
   def update_password
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to main_path
+      flash[:success] = 'Profile updated'
+      redirect_to main_top_pages_path
     else
       render 'edit_password', status: :unprocessable_entity
     end
@@ -55,20 +58,19 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :gender, :golf_experience, :best_score, :birthday, :agreement, :very_weak_point, :weak_point)
+                                 :password_confirmation, :gender, :golf_experience, :best_score,
+                                 :birthday, :agreement, :very_weak_point, :weak_point)
   end
 
   def logged_in_user
-    unless logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to login_url, status: :see_other
-    end 
+    return if logged_in?
+
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url, status: :see_other
   end
 
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url, status: :see_other) unless current_user?(@user)
   end
-
 end
-

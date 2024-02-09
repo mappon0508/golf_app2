@@ -1,11 +1,15 @@
-class TopPagesController < ApplicationController
-    before_action :logged_in_user, only: [:index, :show, :create]
-    before_action :correct_user,   only: [:index, :show, :create]
+# frozen_string_literal: true
 
-  def home
-  end
+# GolfCoursesControllerはトップページに関連するアクションを管理するコントローラです。
+class TopPagesController < ApplicationController
+  before_action :logged_in_user, only: %i[index show create]
+  before_action :authenticate_user!, only: %i[main]
+  
+
+  def home; end
 
   def main
+    binding.pry
     @user = current_user
     @average_score = @user.average_score
     @week_dates = []
@@ -14,14 +18,7 @@ class TopPagesController < ApplicationController
     @practice_schedules_by_day = @practice_schedules.group_by { |schedule| schedule.practice_day.content }
   end
 
-  def how_to_use  
-  end
+  def how_to_use; end
 
-  def terms_of_use
-  end
-  
-
-
-
-  
+  def terms_of_use; end
 end

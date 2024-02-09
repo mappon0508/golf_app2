@@ -1,5 +1,5 @@
 <% provide(:title, "Practice Advice Index") %>
-<%= link_to "戻る", main_path, class: "btn btn-primary" %>
+<%= link_to "戻る", main_top_pages_path, class: "btn btn-primary" %>
 <h1><%= @practice_day.content.strftime("%Y年%m月%d日") %>の練習メニュー</h1>
 <h2>練習メニュー</h2>
 <div class="practice-menu-container">
@@ -11,7 +11,7 @@
         <% hours = total_minutes / 60 %>
         <% minutes = total_minutes % 60 %>
         <li class="practice-menu-item">
-          <%= button_to "詳しく見る", practice_advice_show_path(menu_id), method: :get, class: "btn btn-primary btn-details" %>
+          <%= button_to "詳しく見る", show_practice_advice_path(menu_id), method: :get, class: "btn btn-primary btn-details" %>
           <%= "#{practice_menu.title} | #{hours}時間#{minutes}分" %>
         </li>
       <% end %>

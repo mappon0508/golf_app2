@@ -3,7 +3,7 @@
 <%= button_to "戻る", golf_course_path(@golf_course.id), method: :get, class: "btn btn-primary" %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @hole, url: hole_update_path(@golf_course), method: :patch) do |f| %>
+    <%= form_with(model: @hole, url: edit_hole_path(@golf_course), method: :patch) do |f| %>
       
       <% (1..18).each do |number| %>
         <div class="hole-section">

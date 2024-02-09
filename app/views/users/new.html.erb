@@ -41,7 +41,7 @@
       <%= f.number_field :best_score, value: 72, class: "form-control", min: 18 %>
        
       <%= f.check_box :agreement, :as => :boolean, checked:false %>
-      <%= link_to("Pro Coachの利用規約", terms_of_use_path) %>に同意します。
+      <%= link_to("Pro Coachの利用規約", terms_of_use_top_pages_path) %>に同意します。
 
       <%= f.hidden_field :very_weak_point, value: "not" %>
       <%= f.hidden_field :weak_point, value: "not_weak_point" %>

@@ -12,7 +12,7 @@
   </div>
 </div>
 <% if @golf_course.holes.any? %>
-  <%= button_to "ホールの情報を編集する", hole_edit_path(golf_course_id: @golf_course.id), method: :get, class: "btn btn-primary" %>
+  <%= button_to "ホールの情報を編集する", edit_hole_path(golf_course_id: @golf_course.id), method: :get, class: "btn btn-primary" %>
   <h2>ホール情報</h2>
   <table>
     <thead>

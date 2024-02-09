@@ -1,6 +1,6 @@
 <% provide(:title, "Edit Golf Play Record") %>
 <h1>プレイ記録の編集</h1>
-<%= button_to "戻る", scores_path(id: @golf_play_record.id), method: :get, class: "btn btn-primary" %>
+<%= button_to "戻る", score_path(id: @golf_play_record.id), method: :get, class: "btn btn-primary" %>
 <h2><%= @golf_course.name %></h2>
 
 <div class="row">

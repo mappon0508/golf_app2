@@ -37,7 +37,7 @@
     <% @practice_schedules_by_day.each do |day, schedules| %>
       <div class="menu-day">
         <div class="details">
-          <%= button_to "詳しく見る", practice_advices_path(schedules.first.practice_day_id), method: :get, class: "btn btn-primary" %>
+          <%= button_to "詳しく見る", practice_advice_path(schedules.first.practice_day_id), method: :get, class: "btn btn-primary" %>
         </div>
         <div class="date">
           <%="#{day.strftime("%m月%d日")}"  %>
@@ -62,7 +62,6 @@
     <p>今週の練習メニューは作成されていません</p>
   <% end %>
 </div>
-
 
 
 

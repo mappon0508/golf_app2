@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @golf_play_record)do |f| %>
+        <%= form_with(model: @golf_play_record, url: golf_play_records_path) do |f| %>
             <%= f.hidden_field :golf_course_id, value: @golf_course.id %>
             <%= f.hidden_field :user_id, value: @user.id %>
             <%= f.hidden_field :finish, value: @golf_play_record.finish %>
