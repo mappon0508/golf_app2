@@ -9,8 +9,8 @@ class GolfPlayRecord < ApplicationRecord
   validates :weather, inclusion: { in: %w[sunny cloudy rain snow] }
   enum weather: { sunny: 0, cloudy: 1, rain: 2, snow: 3 }
 
-  validates :finish, inclusion: { in: %w[not_finished finished] }
-  enum finish: { not_finished: 0, finished: 1 }
+  validates :finish, inclusion: { in: %w[unfinished finished] }
+  enum finish: { unfinished: 0, finished: 1 }
 
   def update_finish_status
     if scores.count == 18
