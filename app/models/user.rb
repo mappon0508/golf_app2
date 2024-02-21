@@ -12,6 +12,9 @@ module GolfPlayRecordStats
 end
 
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :golf_courses
   has_many :practice_days
   has_many :golf_play_records

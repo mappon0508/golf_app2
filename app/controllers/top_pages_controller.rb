@@ -2,14 +2,11 @@
 
 # GolfCoursesControllerはトップページに関連するアクションを管理するコントローラです。
 class TopPagesController < ApplicationController
-  before_action :logged_in_user, only: %i[index show create]
-  before_action :authenticate_user!, only: %i[main]
+  before_action :logged_in_user, only: %i[main]
   
-
   def home; end
 
   def main
-    binding.pry
     @user = current_user
     @average_score = @user.average_score
     @week_dates = []

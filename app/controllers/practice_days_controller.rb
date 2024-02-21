@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerは練習スケージュールに関連するアクションを管理するコントローラです。
 class PracticeDaysController < ApplicationController
+  before_action :logged_in_user
   def new
     @user = current_user
     @holes = Array.new(7) { PracticeDay.new }

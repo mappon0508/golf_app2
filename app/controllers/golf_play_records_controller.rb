@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerはゴルフプレイ情報に関連するアクションを管理するコントローラです。
 class GolfPlayRecordsController < ApplicationController
+  before_action :logged_in_user
   def new
     @user = current_user
     @golf_course = GolfCourse.find(params[:id])

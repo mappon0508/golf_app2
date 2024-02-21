@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerはスコア入力に関連するアクションを管理するコントローラです。
 class ScoresController < ApplicationController
+  before_action :logged_in_user
   def index
     @golf_play_record = GolfPlayRecord.find(params[:id])
     @golf_course = @golf_play_record.golf_course

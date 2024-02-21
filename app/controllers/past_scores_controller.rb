@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerは各分野のパーセンテージに関連するアクションを管理するコントローラです。
 class PastScoresController < ApplicationController
+  before_action :logged_in_user
   def index
     @golf_courses = current_user.golf_courses.all
     @golf_play_records = GolfPlayRecord.where(golf_course_id: @golf_courses.pluck(:id))

@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerはホールに関連するアクションを管理するコントローラです。
 class HolesController < ApplicationController
+  before_action :logged_in_user
   def new
     @golf_course = GolfCourse.find(params[:id])
     @holes = Array.new(18) { Hole.new }

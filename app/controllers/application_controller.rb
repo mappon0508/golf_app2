@@ -12,8 +12,14 @@ class ApplicationController < ActionController::Base
   private
 
   def correct_user
-    binding.pry
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def logged_in_user
+    return if logged_in?
+
+    flash[:danger] = 'Please log in.'
+    redirect_to root_path, status: :see_other
   end
 end

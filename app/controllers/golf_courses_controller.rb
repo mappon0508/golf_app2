@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerはゴルフコースに関連するアクションを管理するコントローラです。
 class GolfCoursesController < ApplicationController
+  before_action :logged_in_user
   def index
     @golf_courses = current_user.golf_courses.all
   end

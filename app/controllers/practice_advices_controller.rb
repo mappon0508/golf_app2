@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerはホールに関連するアクションを管理するコントローラです。
 class PracticeAdvicesController < ApplicationController
+  before_action :logged_in_user
   def index
     @practice_day = PracticeDay.find(params[:id])
     @practice_advice = PracticeSchedule.where(practice_day_id: @practice_day.id)

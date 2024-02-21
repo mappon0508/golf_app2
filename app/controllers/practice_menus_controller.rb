@@ -2,6 +2,7 @@
 
 # GolfCoursesControllerは練習メニューに関連するアクションを管理するコントローラです。
 class PracticeMenusController < ApplicationController
+  before_action :logged_in_user
   def index
     @practice_menus = PracticeMenu.all.page(params[:page])
   end

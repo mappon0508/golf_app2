@@ -14,6 +14,8 @@ gem 'pry'
 gem 'rails-i18n'
 gem 'sass-rails', '6.0.0'
 gem 'devise'
+gem 'friendly_id', '~> 5.5.0'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
