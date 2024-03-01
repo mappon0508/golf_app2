@@ -4,25 +4,6 @@
 @import "font-awesome";
 
 
-/* ヘッダを固定するスタイル */
-/* universal */
-
-
-
-  // タブレットサイズ (例: 768px以上、1024px以下) の時のスタイル
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .container {
-      padding-top: 1000px;
-    } 
-  }
-
-  // スマホサイズ (例: 767px以下) の時のスタイル
-  @media (max-width: 767px) {
-    .container {
-      padding-top: 1000px;
-    } 
-  }
-
 
 section {
   overflow: auto;
